@@ -1,16 +1,12 @@
-const { DataTypes } = require("sequelize");
-const connection = require("../db/postgresClient");
+import { DataTypes } from "sequelize";
+import connection from "../db/postgresClient";
 
 
-const users = connection.define('Users', {
+const Users = connection.define('Users', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-        },
-        userName:{
-            type: DataTypes.TEXT,
-            allowNull: false
         },
         minecraftName:{
             type: DataTypes.TEXT,
@@ -26,5 +22,4 @@ const users = connection.define('Users', {
         }
 })
 
-
-module.exports = users
+export default Users;

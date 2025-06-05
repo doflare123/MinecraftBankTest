@@ -1,5 +1,6 @@
-const connection = require("../db/postgresClient");
-const users = require("./users");
+import { DataTypes } from "sequelize";
+import connection from "../db/postgresClient";
+import Users from './users';
 
 
 
@@ -12,7 +13,7 @@ const bankAccount = connection.define('bankAccount', {
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: users,
+        model: Users,
         key: 'id', 
       },
       allowNull: false, 
@@ -20,8 +21,8 @@ const bankAccount = connection.define('bankAccount', {
 
 })
 
-users.hasMany(Contact, { foreignKey: 'user_id', as: 'Contacts' });
-bankAccount.belongsTo(User, { foreignKey: 'user_id', as: 'User' });
+Users.hasOne(bankAccount, { foreignKey: 'user_id', as: 'BankAccount' });
+bankAccount.belongsTo(Users, { foreignKey: 'user_id', as: 'User' });
 
 
 module.exports = bankAccount

@@ -1,5 +1,5 @@
-const { DataTypes } = require("sequelize");
-const connection = require("../db/postgresClient");
+import { DataTypes } from "sequelize";
+import connection from "../db/postgresClient";
 const BankAccount = require("./bankAccount");
 const Resource = require("./resource");
 
